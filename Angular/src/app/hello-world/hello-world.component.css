@@ -1,0 +1,15 @@
+.bg-image {
+   
+        /* The image used */
+          background-image: url("src/images/itconsulting.jpg");
+         height:600px; 
+         min-width: 1000px;
+         width:auto;
+         background-position: center;
+         background-repeat: no-repeat;
+        /* Needed to position the navbar */
+          position: relative; 
+        
+       }
+
+
