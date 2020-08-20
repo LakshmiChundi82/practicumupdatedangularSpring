@@ -17,7 +17,7 @@ import Service.Employee_Service;
 import authenticate.AuthenticationBean;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:8080")
 //@CrossOrigin("https://profile-analyzer.herokuapp.com")
 @RequestMapping(value = "/api")
 public class Controller {
