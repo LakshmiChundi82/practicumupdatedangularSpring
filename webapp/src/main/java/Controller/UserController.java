@@ -17,7 +17,7 @@ import Service.UserService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@CrossOrigin(origins = "https://profile-analyzer.herokuapp.com", allowedHeaders = "*")
 public class UserController {
 	
 	@Autowired
