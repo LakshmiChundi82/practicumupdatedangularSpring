@@ -16,8 +16,8 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.apache.commons.dbcp.BasicDataSource;
-
+import org.apache.commons.dbcp2.BasicDataSource;
+import java.net.URI;
 @Configuration
 
 @EnableTransactionManagement
