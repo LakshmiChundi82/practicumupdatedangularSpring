@@ -1,5 +1,7 @@
 package config;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -17,87 +19,91 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.apache.commons.dbcp2.BasicDataSource;
-import java.net.URI;
+
 @Configuration
 
 @EnableTransactionManagement
 @EnableAutoConfiguration(exclude = { HibernateJpaAutoConfiguration.class })
 @ComponentScans(value = { @ComponentScan("boot.entry"), @ComponentScan("Model"), @ComponentScan("Controller"),
-		@ComponentScan("DAO"), @ComponentScan("Miscallaneous"), @ComponentScan("Service") })
+@ComponentScan("DAO"), @ComponentScan("Miscallaneous"), @ComponentScan("Service") })
 public class Configu {
 
-	@Value("${db.driver}")
-	private String DB_DRIVER;
+@Value("${db.driver}")
+private String DB_DRIVER;
 
-	@Value("${db.password}")
-	private String DB_PASSWORD;
+@Value("${db.password}")
+private String DB_PASSWORD;
 
-	@Value("${db.url}")
-	private String DB_URL;
+@Value("${db.url}")
+private String DB_URL;
 
-	@Value("${db.username}")
-	private String DB_USERNAME;
+@Value("${db.username}")
+private String DB_USERNAME;
 
-	@Value("${hibernate.dialect}")
-	private String HIBERNATE_DIALECT;
+@Value("${hibernate.dialect}")
+private String HIBERNATE_DIALECT;
 
-	@Value("${hibernate.show_sql}")
-	private String HIBERNATE_SHOW_SQL;
+@Value("${hibernate.show_sql}")
+private String HIBERNATE_SHOW_SQL;
 
-	@Value("${hibernate.hbm2ddl.auto}")
-	private String HIBERNATE_HBM2DDL_AUTO;
+@Value("${hibernate.hbm2ddl.auto}")
+private String HIBERNATE_HBM2DDL_AUTO;
 
-	@Value("${entitymanager.packagesToScan}")
-	private String ENTITYMANAGER_PACKAGES_TO_SCAN;
+@Value("${entitymanager.packagesToScan}")
+private String ENTITYMANAGER_PACKAGES_TO_SCAN;
 
-	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
-		Properties hibernateProperties = new Properties();
-		hibernateProperties.put("hibernate.dialect", HIBERNATE_DIALECT);
-		hibernateProperties.put("hibernate.show_sql", HIBERNATE_SHOW_SQL);
-		hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
-		sessionFactory.setHibernateProperties(hibernateProperties);
-		return sessionFactory;
-	}
+@Bean
+public LocalSessionFactoryBean sessionFactory() throws URISyntaxException{
+LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+sessionFactory.setDataSource(dataSource());
+sessionFactory.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
+Properties hibernateProperties = new Properties();
+hibernateProperties.put("hibernate.dialect", HIBERNATE_DIALECT);
+hibernateProperties.put("hibernate.show_sql", HIBERNATE_SHOW_SQL);
+hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
+sessionFactory.setHibernateProperties(hibernateProperties);
+return sessionFactory;
+}
 
-	@Bean
-	public BasicDataSource dataSource() {
-// 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-// 		//dataSource.setDriverClassName(DB_DRIVER);
-// 		dataSource.setUrl(DB_URL);
-// 		dataSource.setUsername(DB_USERNAME);
-// 		dataSource.setPassword(DB_PASSWORD);
-		
-		URI dbUri = new URI(DB_URL);
+/*@Bean
+public BasicDataSource dataSource() {
+DriverManagerDataSource dataSource = new DriverManagerDataSource();
+dataSource.setDriverClassName(DB_DRIVER);
+dataSource.setUrl(DB_URL);
+dataSource.setUsername(DB_USERNAME);
+dataSource.setPassword(DB_PASSWORD);
+return dataSource;
+}*/
 
-        	String username = dbUri.getUserInfo().split(":")[0];
-        	String password = dbUri.getUserInfo().split(":")[1];
-        	String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+@Bean
+    public BasicDataSource dataSource() throws URISyntaxException {
+        URI dbUri = new URI(DB_URL);
 
-        	BasicDataSource basicDataSource = new BasicDataSource();
-        	basicDataSource.setUrl(dbUrl);
-        	basicDataSource.setUsername(DB_USERNAME);
-        	basicDataSource.setPassword(DB_PASSWORD);
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
 
-        	return basicDataSource;
-	}
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(dbUrl);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
 
-	@Bean
-	public HibernateTransactionManager transactionManager() {
-		HibernateTransactionManager txManager = new HibernateTransactionManager();
-		txManager.setSessionFactory(sessionFactory().getObject());
-		return txManager;
-	}
+        return basicDataSource;
+    }
 
-	@Bean
-	public InternalResourceViewResolver jspViewResolver() {
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/views/");
-		resolver.setSuffix(".jsp");
-		return resolver;
-	}
+@Bean
+public HibernateTransactionManager transactionManager() throws URISyntaxException {
+HibernateTransactionManager txManager = new HibernateTransactionManager();
+txManager.setSessionFactory(sessionFactory().getObject());
+return txManager;
+}
+
+@Bean
+public InternalResourceViewResolver jspViewResolver() {
+InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+resolver.setPrefix("/views/");
+resolver.setSuffix(".jsp");
+return resolver;
+}
 
 }
