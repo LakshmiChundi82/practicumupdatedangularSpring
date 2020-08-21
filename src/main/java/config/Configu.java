@@ -63,13 +63,25 @@ public class Configu {
 	}
 
 	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		//dataSource.setDriverClassName(DB_DRIVER);
-		dataSource.setUrl(DB_URL);
-		dataSource.setUsername(DB_USERNAME);
-		dataSource.setPassword(DB_PASSWORD);
-		return dataSource;
+	public BasicDataSource dataSource() {
+// 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+// 		//dataSource.setDriverClassName(DB_DRIVER);
+// 		dataSource.setUrl(DB_URL);
+// 		dataSource.setUsername(DB_USERNAME);
+// 		dataSource.setPassword(DB_PASSWORD);
+		
+		URI dbUri = new URI(DB_URL);
+
+        	String username = dbUri.getUserInfo().split(":")[0];
+        	String password = dbUri.getUserInfo().split(":")[1];
+        	String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+
+        	BasicDataSource basicDataSource = new BasicDataSource();
+        	basicDataSource.setUrl(dbUrl);
+        	basicDataSource.setUsername(DB_USERNAME);
+        	basicDataSource.setPassword(DB_PASSWORD);
+
+        	return basicDataSource;
 	}
 
 	@Bean
