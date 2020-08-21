@@ -9,7 +9,7 @@ import { Http, RequestOptions , Headers } from '@angular/http';
 export class UserDetailService {
 
   // Base URL
-  private  baseUrl = "/FileUploadExample/api/";
+  private  baseUrl = "http://localhost:8080/FileUploadExample/api/";
 
   constructor(private http: Http) { }
 
