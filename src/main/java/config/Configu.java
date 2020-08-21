@@ -65,7 +65,7 @@ public class Configu {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(DB_DRIVER);
+		//dataSource.setDriverClassName(DB_DRIVER);
 		dataSource.setUrl(DB_URL);
 		dataSource.setUsername(DB_USERNAME);
 		dataSource.setPassword(DB_PASSWORD);
