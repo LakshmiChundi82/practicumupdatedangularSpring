@@ -25,12 +25,12 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-  this.authenticationService.authenticationService().subscribe((result)=> {
+   {
       
       this.successMessage = 'Login Successful.';
       this.router.navigate(['/hello-world']);
    
-  });
+   }
   }     
   }
 
