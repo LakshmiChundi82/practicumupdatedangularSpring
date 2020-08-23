@@ -15,18 +15,17 @@ min-height: 500px;
 
 } 
 
-.bg-img {
-  /* The image used */
-    background-image: url("src/images/unnamed.jpeg");
+/*.bg-img {
+  
+   background-image: url("src/images/unnamed.jpeg");
    height:400px; 
-   /* min-width: 1500px; */
    background-position: center;
-  /* Needed to position the navbar */
+  
     position: relative; 
     width: 2000px;
     background-repeat: no-repeat;
   
- }   
+ }   */
 
  .navbar-brand, .nav > li > a {
   padding: 15px 15px;
