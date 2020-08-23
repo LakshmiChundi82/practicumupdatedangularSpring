@@ -21,6 +21,7 @@ import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
 import {HttpClient} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import { ResumeComponent } from './resume/resume.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {HttpModule} from '@angular/http';
     AddEmployeeComponent,
     HomeComponent,
     RegisterComponent,
-    ContactComponent
+    ContactComponent,
+    ResumeComponent
   ],
   imports: [
     BrowserModule,

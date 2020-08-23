@@ -44,6 +44,18 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Careers
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['jobs']" routerLinkActive="router-link-active">Job Search</a>
+          <a class="dropdown-item" [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/resume']" routerLinkActive="router-link-active">Submit ur Resume</a>
+          <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+        </div>
+      </li>
     </ul>
   </div>
 </nav>

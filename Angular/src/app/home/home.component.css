@@ -15,18 +15,29 @@ min-height: 500px;
 
 } 
 
-.bg-img {
-  /* The image used */
-    background-image: url("src/images/unnamed.jpeg");
+/*.bg-img {
+  
+  background-image: url("../../images/unnamed.jpg");
    height:400px; 
-   /* min-width: 1500px; */
+  
    background-position: center;
-  /* Needed to position the navbar */
+  
     position: relative; 
     width: 2000px;
     background-repeat: no-repeat;
   
- }   
+ }   */
+
+ .bg-img {
+  /* The image used */
+    background-image: url("../../images/unnamed.jpg");
+   height:1000px; 
+   min-width: 500px;
+   background-position: center;
+  /* Needed to position the navbar */
+    position: relative; 
+  
+ } 
 
  .navbar-brand, .nav > li > a {
   padding: 15px 15px;
