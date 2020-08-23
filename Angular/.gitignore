@@ -8,7 +8,7 @@
 /bazel-out
 
 # dependencies
-/node_modules
+node_modules/
 
 # profiling files
 chrome-profiler-events.json
@@ -44,3 +44,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+node_modules/
+#touch .gitignore && echo "node_modules/" >> .gitignore && git rm -r --cached node_modules ;

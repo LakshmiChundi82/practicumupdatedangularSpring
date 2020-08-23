@@ -8,7 +8,6 @@ import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ContactComponent } from './contact/contact.component';
 import {RegisterComponent} from './register/register.component';
-import {ResumeComponent} from './resume/resume.component';
 
 
 const routes: Routes = [
@@ -20,10 +19,7 @@ const routes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'view-employee', component :EmployeeListComponent},
   {path:'add-employee', component : AddEmployeeComponent},
-  {path:'register', component : RegisterComponent},
-  {path:'resume', component : ResumeComponent}
-
-
+  {path:'register', component : RegisterComponent}
 ];
 
 @NgModule({

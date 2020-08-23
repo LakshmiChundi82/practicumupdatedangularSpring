@@ -10,12 +10,13 @@ import { jsonpFactory } from '@angular/http/src/http_module';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  selectedFiles: FileList;
+  currentFileUpload: File;
+
+  private userDetail = new UserDetail(); 
   
-selectedFiles: FileList;
-currentFileUpload: File; 
-  
-private userDetail = new UserDetail(); 
-constructor(private userDetailService : UserDetailService) { }
+  constructor(private userDetailService : UserDetailService) { }
 
   ngOnInit() {
   }
@@ -93,4 +94,8 @@ constructor(private userDetailService : UserDetailService) { }
         return this.form.get('email');
     } 
 
+
+
+
+     
 }
